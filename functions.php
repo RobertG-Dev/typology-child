@@ -84,14 +84,3 @@ function typology_child_render_sponsors_section()
 }
 
 add_action('woocommerce_after_main_content', 'typology_child_render_sponsors_section', 20);
-
-// Remove the "Downloads remaining" and "Expires" columns
-function remove_download_columns($columns)
-{
-    unset($columns['download-remaining']);
-    unset($columns['download-expires']);
-
-    return $columns;
-}
-
-add_filter('woocommerce_account_downloads_columns', 'remove_download_columns');
