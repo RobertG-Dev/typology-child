@@ -156,6 +156,3 @@ add_filter('woocommerce_account_downloads_columns', 'remove_download_columns');
 
 // Add Board Members metabox
 require_once get_stylesheet_directory() . '/inc/board-members.php';
-
-// Member registration API endpoint
-require_once get_stylesheet_directory() . '/inc/member-registration-api-endpoint.php';
