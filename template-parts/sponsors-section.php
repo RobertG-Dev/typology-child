@@ -1,33 +1,3 @@
-<style>
-    .sponsors {
-        display: grid;
-        padding: 50px;
-        gap: 40px;
-    }
-
-    .sponsors a {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .sponsors a img {
-        max-height: 100px;
-    }
-
-    @media screen and (max-width: 800px) {
-        .sponsors {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    @media screen and (min-width: 801px) {
-        .sponsors {
-            grid-template-columns: repeat(5, 1fr);
-        }
-    }
-</style>
-
 <h4 class='section-title' style="padding-top: 36px;">Organizacijos veiklą finansuoja</h4>
 
 <div class='sponsors'>
