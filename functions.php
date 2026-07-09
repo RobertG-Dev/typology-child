@@ -134,6 +134,15 @@ function typology_get_archive_heading()
     return wp_parse_args($args, $defaults);
 }
 
+function typology_child_render_sponsors_section()
+{
+    if (is_shop() || is_product_taxonomy()) {
+        get_template_part('template-parts/sponsors-section');
+    }
+}
+
+add_action('woocommerce_after_main_content', 'typology_child_render_sponsors_section', 20);
+
 function custom_post_choir()
 {
     $choir_labels = [
