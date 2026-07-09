@@ -154,29 +154,6 @@ function remove_download_columns($columns)
 
 add_filter('woocommerce_account_downloads_columns', 'remove_download_columns');
 
-/**
- * Add Category support to Pages
- */
-function my_child_theme_add_categories_to_pages() {
-    register_taxonomy_for_object_type( 'category', 'page' );
-}
-add_action( 'init', 'my_child_theme_add_categories_to_pages' );
-
-/**
- * Add Category Slugs to Body Class on Pages
- */
-function typology_child_add_category_to_body_classes( $classes ) {
-    if ( is_page() && has_category() ) {
-        $categories = get_the_category();
-
-        foreach( $categories as $category ) {
-            $classes[] = 'category-' . $category->slug;
-        }
-    }
-    return $classes;
-}
-add_filter( 'body_class', 'typology_child_add_category_to_body_classes' );
-
 // Add Board Members metabox
 require_once get_stylesheet_directory() . '/inc/board-members.php';
 
