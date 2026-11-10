@@ -84,3 +84,27 @@ function typology_child_render_sponsors_section()
 }
 
 add_action('woocommerce_after_main_content', 'typology_child_render_sponsors_section', 20);
+
+/*
+    WordPress 7.x always renders the post editor in an iframe. Typology attaches its
+    editor font/color CSS to enqueue_block_editor_assets, which never reaches the iframe,
+    so editor text falls back to the browser serif. Re-send it via enqueue_block_assets,
+    rewriting the "body .editor-styles-wrapper" selectors because the iframe body itself
+    carries the editor-styles-wrapper class.
+*/
+function typology_child_editor_iframe_styles()
+{
+    if (!is_admin() || !function_exists('typology_generate_dynamic_editor_css')) {
+        return;
+    }
+
+    if (function_exists('typology_generate_fonts_link') && ($fonts_link = typology_generate_fonts_link())) {
+        wp_enqueue_style('typology_child_editor_fonts', set_url_scheme($fonts_link, 'https'), array(), null);
+    }
+
+    wp_register_style('typology_child_editor_iframe', false, array(), TYPOLOGY_THEME_VERSION);
+    wp_enqueue_style('typology_child_editor_iframe');
+    wp_add_inline_style('typology_child_editor_iframe', str_replace('body .editor-styles-wrapper', '.editor-styles-wrapper', typology_generate_dynamic_editor_css()));
+}
+
+add_action('enqueue_block_assets', 'typology_child_editor_iframe_styles');
